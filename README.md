@@ -1,8 +1,8 @@
 # IT_360_Final_Project_spring_2026
 
 ## Team Members
-- Member 2
-- Member 2
+- Tim Lomande
+- James Yahr
 
   ## Project idea
   Place your description and details here.
