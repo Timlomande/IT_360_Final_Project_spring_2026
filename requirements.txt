@@ -1,1 +1,9 @@
-
+# USBTrace - Windows USB Forensics Tool
+# Built entirely in PowerShell using native Windows cmdlets.
+# No Python packages or external dependencies required.
+#
+# Runtime requirements:
+#   - Windows 10 or Windows 11
+#   - PowerShell 5.1 or later (included with Windows)
+#   - Administrator privileges
+#   - LM Studio (https://lmstudio.ai) with a loaded model for AI analysis, this model can be any that you choose or have access to, for this project, we used 'llama-3.2-3b-instruct'
