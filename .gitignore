@@ -1,1 +1,16 @@
+# Generated forensic reports (contain sensitive system data)
+*.html
 
+# Windows thumbnail cache
+Thumbs.db
+desktop.ini
+
+# VS Code settings
+.vscode/
+
+# Any accidental API key files
+*.key
+*.env
+
+# PowerShell crash logs
+*.pslog
