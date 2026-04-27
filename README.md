@@ -73,10 +73,10 @@ USBTrace will collect artifacts from the registry and event logs, build a device
 
 ### Demo Mode
 
-If you want to see the behavioral flags and AI risk escalation without plugging in a physical drive, use the demo scripts. They write fake USB connect/disconnect events and a fake registry device entry that USBTrace will pick up and flag as suspicious.
+If you want to see the behavioral flags and AI risk escalation without plugging in a physical drive, use the demo scripts. They write test USB connect/disconnect events and a test registry device entry that USBTrace will pick up and flag as suspicious. If you have a real USB Drive you can recreate this by plugging and unplugging the drive multiple times in rapid succession. You can also load seemingly malicious files to achieve the same result.
 
 ```powershell
-# 1. Create the fake artifacts
+# 1. Create the test artifacts
 powershell -ExecutionPolicy Bypass -File ".\Demo\Setup-Demo.ps1"
 
 # 2. Run the tool
