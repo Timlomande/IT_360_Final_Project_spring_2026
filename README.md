@@ -25,9 +25,9 @@ The project utilizes AI to provide interpretive analysis of USB forensic informa
 ### Prerequisites
 
 - Windows 10 or Windows 11
-- PowerShell 5.1 or later (included with Windows by default)
+- PowerShell 5.1 or later (built into Windows)
 - Administrator privileges
-- [LM Studio](https://lmstudio.ai) with a loaded model for AI analysis
+- [LM Studio](https://lmstudio.ai) for local AI analysis
 
 ### Step 1 — Clone the Repository
 
@@ -36,7 +36,7 @@ git clone https://github.com/Timlomande/IT_360_Final_Project_spring_2026.git
 cd IT_360_Final_Project_spring_2026
 ```
 
-### Step 2 — Allow PowerShell Script Execution
+### Step 2 — Allow PowerShell Scripts to Run
 
 Open PowerShell as Administrator and run:
 
@@ -44,70 +44,50 @@ Open PowerShell as Administrator and run:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
-### Step 3 — Configure LM Studio
+### Step 3 — Set Up LM Studio
 
 1. Download and install [LM Studio](https://lmstudio.ai)
-2. Open LM Studio and go to the **Discover** tab to download a model
-   - Recommended: `llama-3.2-3b-instruct` (lightweight) or `llama-3.1-8b-instruct` (better accuracy)
-3. Go to the **Developer** tab (the `< >` icon in the left sidebar)
-4. Select your downloaded model and click **Start Server**
-5. Confirm the server is running on `http://localhost:1234`
+2. Search for and download a model — we used `llama-3.2-3b-instruct`. The `llama-3.1-8b-instruct` model gives better results if your machine can handle it
+3. Go to the **Developer** tab on the left sidebar
+4. Load your model and hit **Start Server**
+5. The server should be running at `http://localhost:1234`
 
-### Step 4 — Run the Pre-Flight Check (Optional)
-
-Before running the tool, verify your environment is configured correctly:
+### Step 4 — Test Your Setup
 
 ```powershell
 cd src/USBTrace
 powershell -ExecutionPolicy Bypass -File ".\Test-LMStudio.ps1"
 ```
 
-All four checks should pass before proceeding.
+This runs a quick check to make sure LM Studio is talking to USBTrace correctly. All four checks should be green before moving on.
 
-### Step 5 — Run USBTrace
+### Step 5 — Run the Tool
 
 ```powershell
-cd src/USBTrace
 powershell -ExecutionPolicy Bypass -File ".\USBTrace.ps1"
 ```
 
-The tool will collect artifacts, build a timeline, send data to LM Studio for analysis, and save a self-contained HTML report to the `src/USBTrace` directory. Open the generated `.html` file in any browser to view the full forensic report.
+USBTrace will collect artifacts from the registry and event logs, build a device timeline, run AI analysis through LM Studio, and drop an HTML report in the same folder. Open it in any browser.
 
-### Demo Mode (Simulated Suspicious Activity)
+---
 
-To demonstrate the tool's behavioral flag detection without a physical USB device:
+### Demo Mode
 
-**1. Run the demo setup script** (creates fake USB artifacts in the registry and event log):
+If you want to see the behavioral flags and AI risk escalation without plugging in a physical drive, use the demo scripts. They write fake USB connect/disconnect events and a fake registry device entry that USBTrace will pick up and flag as suspicious.
 
 ```powershell
+# 1. Create the fake artifacts
 powershell -ExecutionPolicy Bypass -File ".\Demo\Setup-Demo.ps1"
-```
 
-**2. Run USBTrace** to analyze the simulated artifacts:
-
-```powershell
+# 2. Run the tool
 powershell -ExecutionPolicy Bypass -File ".\USBTrace.ps1"
-```
 
-The report will show a simulated SanDisk Ultra USB device with `HIGH_FREQUENCY` and `SHORT_SESSIONS` flags raised and a MEDIUM or HIGH AI risk assessment.
-
-**3. Clean up** after the demo to remove all fake artifacts:
-
-```powershell
+# 3. Clean up when done
 powershell -ExecutionPolicy Bypass -File ".\Demo\Cleanup-Demo.ps1"
 ```
 
+The report should show a SanDisk Ultra device with `HIGH_FREQUENCY` and `SHORT_SESSIONS` flags and a MEDIUM or HIGH risk rating from the AI.
+
+---
+
 ### File Structure
-src/USBTrace/
-├── USBTrace.ps1              # Main entry point
-├── Test-LMStudio.ps1         # LM Studio connectivity test
-├── Test-Environment.ps1      # Pre-flight environment check
-├── requirements.txt          # Dependency notes
-├── Modules/
-│   ├── Get-USBArtifacts.ps1  # Registry, event log, and SetupAPI collection
-│   ├── Build-Timeline.ps1    # Timeline correlation and behavioral flag engine
-│   ├── Invoke-AIAnalysis.ps1 # LM Studio AI integration
-│   └── Export-HTMLReport.ps1 # HTML report generator
-└── Demo/
-├── Setup-Demo.ps1        # Creates simulated USB artifacts for demo
-└── Cleanup-Demo.ps1      # Removes all demo artifacts
