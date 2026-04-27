@@ -47,7 +47,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ### Step 3 — Set Up LM Studio
 
 1. Download and install [LM Studio](https://lmstudio.ai)
-2. Search for and download a model — we used `llama-3.2-3b-instruct`. The `llama-3.1-8b-instruct` model gives better results if your machine can handle it
+2. Search for and download a model, we used `llama-3.2-3b-instruct`. The `llama-3.1-8b-instruct` model gives better results if your machine can handle it
 3. Go to the **Developer** tab on the left sidebar
 4. Load your model and hit **Start Server**
 5. The server should be running at `http://localhost:1234`
