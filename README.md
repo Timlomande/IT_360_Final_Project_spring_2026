@@ -28,7 +28,7 @@ manner to preserve forensic integrity and minimize system impact.
   ORPHANED_SESSIONS, and GENERIC_DEVICE
 - **Local AI analysis** - Sends the device timeline to a locally hosted LM Studio 
   model for risk assessment, key findings, insider threat indicators, and recommended 
-  actions — no data leaves the machine
+  actions, no data leaves the machine
 - **Self-contained HTML report** - Generates a single HTML file with statistics 
   dashboard, AI analysis panel, interactive device timeline, and raw artifact data tabs
 - **Read-only operation** - No registry keys created or modified, no event log 
