@@ -18,22 +18,22 @@ manner to preserve forensic integrity and minimize system impact.
 
 ## Features
 
-- **Registry artifact collection** — Queries USBSTOR, USB Enum, and MountedDevices 
+- **Registry artifact collection** - Queries USBSTOR, USB Enum, and MountedDevices 
   hives to identify every USB device ever connected, including devices no longer 
   physically present
-- **Session timeline reconstruction** — Pairs Windows Event Log connect and 
+- **Session timeline reconstruction** - Pairs Windows Event Log connect and 
   disconnect events to calculate session durations for each device
-- **Behavioral flag detection** — Automatically raises analyst flags for suspicious 
+- **Behavioral flag detection** - Automatically raises analyst flags for suspicious 
   patterns including HIGH_FREQUENCY, SHORT_SESSIONS, OFF_HOURS, 
   ORPHANED_SESSIONS, and GENERIC_DEVICE
-- **Local AI analysis** — Sends the device timeline to a locally hosted LM Studio 
+- **Local AI analysis** - Sends the device timeline to a locally hosted LM Studio 
   model for risk assessment, key findings, insider threat indicators, and recommended 
   actions — no data leaves the machine
-- **Self-contained HTML report** — Generates a single HTML file with statistics 
+- **Self-contained HTML report** - Generates a single HTML file with statistics 
   dashboard, AI analysis panel, interactive device timeline, and raw artifact data tabs
-- **Read-only operation** — No registry keys created or modified, no event log 
+- **Read-only operation** - No registry keys created or modified, no event log 
   entries written, forensic integrity preserved throughout
-- **Demo mode** — Includes setup and cleanup scripts to simulate a suspicious USB 
+- **Demo mode** - Includes setup and cleanup scripts to simulate a suspicious USB 
   activity without a physical device
 
 
