@@ -4,11 +4,37 @@
 - Tim Lomande
 - James Yahr
 
-  ## Project idea
-  
-  
-This project involves creating a Windows-based digital forensics tool using PowerShell that focuses on tracking and reconstructing the activity of removable media devices such as USB drives. When a USB device is connected to a system, the tool will collect relevant forensic artifacts from the Windows registry and event logs to identify when the device was connected, how long it remained in use, and what system interactions occurred during that time. These artifacts will be correlated into a timeline, allowing investigators to clearly see USB-related activity on the machine. The tool is designed to operate in a read-only manner to preserve forensic integrity and minimize system impact. Its goal is to simplify USB usage analysis for investigations involving data exfiltration, policy violations, or unauthorized device use.
+## Project Overview
 
+USBTrace is a Windows-based digital forensics tool built in PowerShell that tracks 
+and reconstructs the activity of removable media devices such as USB drives. When 
+run on a Windows system, it collects forensic artifacts from the registry and event 
+logs to identify when devices were connected, how long they remained in use, and 
+what system interactions occurred. These artifacts are correlated into a timeline 
+and analyzed by a locally hosted AI model, allowing investigators to quickly assess 
+USB-related activity on a machine. The tool is designed to operate in a read-only 
+manner to preserve forensic integrity and minimize system impact.
+
+
+## Features
+
+- **Registry artifact collection** — Queries USBSTOR, USB Enum, and MountedDevices 
+  hives to identify every USB device ever connected, including devices no longer 
+  physically present
+- **Session timeline reconstruction** — Pairs Windows Event Log connect and 
+  disconnect events to calculate session durations for each device
+- **Behavioral flag detection** — Automatically raises analyst flags for suspicious 
+  patterns including HIGH_FREQUENCY, SHORT_SESSIONS, OFF_HOURS, 
+  ORPHANED_SESSIONS, and GENERIC_DEVICE
+- **Local AI analysis** — Sends the device timeline to a locally hosted LM Studio 
+  model for risk assessment, key findings, insider threat indicators, and recommended 
+  actions — no data leaves the machine
+- **Self-contained HTML report** — Generates a single HTML file with statistics 
+  dashboard, AI analysis panel, interactive device timeline, and raw artifact data tabs
+- **Read-only operation** — No registry keys created or modified, no event log 
+  entries written, forensic integrity preserved throughout
+- **Demo mode** — Includes setup and cleanup scripts to simulate a suspicious USB 
+  activity without a physical device
 
 
 
